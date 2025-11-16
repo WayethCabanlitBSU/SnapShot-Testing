@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .cart-container {
   width: 90%;
   max-width: 700px;

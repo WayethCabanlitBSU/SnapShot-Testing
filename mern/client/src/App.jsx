@@ -1,8 +1,5 @@
-import React from "react";
-import Cart from "./components/cart";
+import Home from "./Pages/Home";
 
-function App() {
-  return <Cart />;
+export default function App() {
+  return <Home />;
 }
-
-export default App;
