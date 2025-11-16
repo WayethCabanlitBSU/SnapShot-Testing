@@ -1,12 +1,14 @@
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
+import CartDrawer from "../components/cartDrawer"; // FIXED capitalized import
 import camera1 from "../assets/camera1.png";
 import camera2 from "../assets/camera2.png";
 import camera3 from "../assets/camera3.png";
 
 export default function Home() {
   const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false); // NEW
 
   const products = [
     {
@@ -35,11 +37,26 @@ export default function Home() {
     },
   ];
 
+  // Add item to cart
   const addToCart = (product) => setCart((prev) => [...prev, product]);
+
+  // Remove item
+  const removeFromCart = (product) =>
+    setCart((prev) => prev.filter((p) => p.id !== product.id));
 
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
+      <Navbar openCart={() => setIsCartOpen(true)} />
+
+      {/* CART DRAWER */}
+      {isCartOpen && (
+        <CartDrawer
+          cart={cart}
+          closeCart={() => setIsCartOpen(false)}
+          removeFromCart={removeFromCart}
+        />
+      )}
+
       <section className="text-center mt-12">
         <h1 className="text-4xl font-bold text-gray-900">Our Bestsellers</h1>
         <p className="text-gray-600 mt-2">Find Your Perfect Camera</p>
@@ -47,7 +64,11 @@ export default function Home() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-8 py-12">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} addToCart={addToCart} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            addToCart={addToCart}
+          />
         ))}
       </div>
     </div>

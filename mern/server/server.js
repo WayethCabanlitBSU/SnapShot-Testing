@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import records from "./routes/record.js";
 import cartRoutes from "./routes/cartRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+
 
 dotenv.config({ path: "./config.env" });
 
@@ -26,6 +28,7 @@ mongoose
 app.get("/", (req, res) => res.send("API is running..."));
 app.use("/record", records);
 app.use("/api/cart", cartRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Start server
 app.listen(PORT, () => {
