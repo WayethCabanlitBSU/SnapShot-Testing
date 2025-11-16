@@ -1,6 +1,9 @@
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
+import camera1 from "../assets/camera1.png";
+import camera2 from "../assets/camera2.png";
+import camera3 from "../assets/camera3.png";
 
 export default function Home() {
   const [cart, setCart] = useState([]);
@@ -12,7 +15,7 @@ export default function Home() {
       color: "Black",
       rating: 4.7,
       price: 129.99,
-      image: "/assets/camera1.png",
+      image: camera1,
     },
     {
       id: 2,
@@ -20,7 +23,7 @@ export default function Home() {
       color: "Yellow",
       rating: 4.5,
       price: 149.99,
-      image: "/assets/camera2.png",
+      image: camera2,
     },
     {
       id: 3,
@@ -28,16 +31,14 @@ export default function Home() {
       color: "White",
       rating: 4.8,
       price: 159.99,
-      image: "/assets/camera3.png",
+      image: camera3,
     },
   ];
 
-  const addToCart = (product) => {
-    setCart((prev) => [...prev, product]);
-  };
+  const addToCart = (product) => setCart((prev) => [...prev, product]);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Navbar />
       <section className="text-center mt-12">
         <h1 className="text-4xl font-bold text-gray-900">Our Bestsellers</h1>

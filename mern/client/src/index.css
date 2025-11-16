@@ -2,9 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* ====== Global Styles ====== */
 body {
   background-color: #ffffff;
-  color: #111;
+  color: #111111;
   font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+/* ====== Buttons ====== */
+button {
+  transition: all 0.2s ease;
+}
+
+/* Hover animation for product cards */
+.product-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
