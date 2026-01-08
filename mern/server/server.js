@@ -1,16 +1,15 @@
 // server/server.js
+import dotenv from "dotenv";
+dotenv.config({ path: "./config.env" });
+
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 import records from "./routes/record.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-
-
-dotenv.config({ path: "./config.env" });
 
 const PORT = process.env.PORT || 5050;
 const URI = process.env.ATLAS_URI;

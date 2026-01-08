@@ -5,6 +5,7 @@ import Swiper from "swiper";
 import "swiper/css";
 
 import "./landing.css";
+import Navbar from "../components/Navbar";
 
 // ✅ images (Vite + src/assets)
 import blackcam from "../assets/blackcam.png";
@@ -112,82 +113,7 @@ export default function Landing() {
 
   return (
     <>
-      {/* Navigation bar */}
-      <nav>
-        <div className="nav__header">
-          <div className="nav__logo">
-            <a href="#home" className="logo" onClick={() => setIsOpen(false)}>
-              SnapShot
-            </a>
-          </div>
-
-          <div
-            className="nav__menu__btn"
-            id="menu-btn"
-            onClick={() => setIsOpen((v) => !v)}
-          >
-            <i className={menuIconClass}></i>
-          </div>
-        </div>
-
-        <ul
-          className={`nav__links ${isOpen ? "open" : ""}`}
-          id="nav-links"
-          onClick={() => setIsOpen(false)} // close menu when any link is clicked
-        >
-          {/* ✅ Keep anchors for same-page sections (keeps original CSS/icons look) */}
-          <li><a href="#home">HOME</a></li>
-          <li><a href="#about">ABOUT</a></li>
-          <li><a href="#service">SERVICE</a></li>
-
-          {/* ✅ Shop page route (no refresh) */}
-          <li>
-            <Link to="/home">CAMERAS</Link>
-          </li>
-
-          <li><Link to="/contact">CONTACT</Link></li>
-
-          {/* ✅ Signup/Logout route */}
-          {!user ? (
-            <li>
-              <Link to="/signup">SIGN UP</Link>
-            </li>
-          ) : (
-            <li>
-              <button type="button" onClick={handleLogout} style={{ color: "#ff6b6b", background: "none", border: "none", cursor: "pointer", fontSize: "1rem" }}>
-                LOGOUT
-              </button>
-            </li>
-          )}
-        </ul>
-
-        <div className="nav__btns">
-          {user ? (
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", whiteSpace: "nowrap", flexShrink: 1, minWidth: 0 }}>
-              <span style={{ color: "#000", fontWeight: "600", fontSize: "0.95rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", maxWidth: "100px", flexShrink: 1 }}>
-                👤 {user.name}
-              </span>
-              <button
-                className="btn btn-enhanced"
-                type="button"
-                onClick={handleLogout}
-                style={{ padding: "0.75rem 1.25rem", fontSize: "0.9rem", whiteSpace: "nowrap", flexShrink: 0 }}
-              >
-                LOGOUT
-              </button>
-            </div>
-          ) : (
-            <button
-              className="btn btn-enhanced"
-              type="button"
-              onClick={() => navigate("/signup")}
-              style={{ padding: "0.75rem 1.75rem", fontSize: "0.95rem", whiteSpace: "nowrap", flexShrink: 0 }}
-            >
-              SIGN UP
-            </button>
-          )}
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Header section */}
       <header id="home">

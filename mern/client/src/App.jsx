@@ -5,6 +5,7 @@ import Orders from "./Pages/Orders";
 import Contact from "./Pages/Contact";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
+import Admin from "./Pages/Admin";
 
 // Main routing component - sets up all app routes
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   );
 }

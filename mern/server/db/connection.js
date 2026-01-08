@@ -1,25 +1,32 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
-const URI = process.env.ATLAS_URI || "";
-const client = new MongoClient(URI, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-  appName: "sample-app-nodejs-mern-tutorial",
-});
+const URI = process.env.ATLAS_URI;
 
-try {
-  // Connect the client to the server
-  await client.connect();
-  // Send a ping to confirm a successful connection
-  await client.db("admin").command({ ping: 1 });
-  console.log("Pinged your deployment. You successfully connected to MongoDB!");
-} catch (err) {
-  console.error(err);
+let client;
+
+if (!URI) {
+  console.warn("⚠️ ATLAS_URI not defined in environment variables");
+} else {
+  client = new MongoClient(URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+    appName: "sample-app-nodejs-mern-tutorial",
+  });
+
+  try {
+    // Connect the client to the server
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-let db = client.db("employees");
+let db = client ? client.db("employees") : null;
 
 export default db;

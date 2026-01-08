@@ -100,6 +100,10 @@ export default function LandingNavbar({ openCart }) {
         <li><Link to="/home" onClick={() => setIsOpen(false)}>CAMERAS</Link></li>
         <li><Link to="/contact" onClick={() => setIsOpen(false)}>CONTACT</Link></li>
 
+        {user && user.isAdmin && (
+          <li><Link to="/admin" onClick={() => setIsOpen(false)}>ADMIN PANEL</Link></li>
+        )}
+
         {!user && (
           <li>
             <Link to="/signup" onClick={() => setIsOpen(false)}>
