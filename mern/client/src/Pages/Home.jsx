@@ -174,13 +174,13 @@ export default function Home() {
       )}
 
       {/* HEADER */}
-      <section className="text-center mt-12">
-        <h1 className="text-4xl font-bold text-gray-900">Our Bestsellers</h1>
-        <p className="text-gray-600 mt-2">Find Your Perfect Camera</p>
+      <section className="text-center mt-24 sm:mt-16 px-2 sm:px-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-tight">Our Bestsellers</h1>
+        <p className="text-gray-600 mt-2 text-base sm:text-lg">Find Your Perfect Camera</p>
       </section>
 
       {/* PRODUCTS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-8 py-12">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-4 md:px-8 py-6 sm:py-10 md:py-12">
         {products.map((product) => (
           <ProductCard
             key={product.id}
@@ -189,6 +189,7 @@ export default function Home() {
           />
         ))}
       </div>
+
 
       {/* CART DRAWER */}
       {cartOpen && (
@@ -200,6 +201,22 @@ export default function Home() {
           onOrderComplete={handleOrderComplete}
         />
       )}
+
+      {/* Floating Cart Button for Mobile */}
+      <button
+        className="fixed bottom-6 right-6 z-[9999] bg-yellow-400 text-black rounded-full shadow-lg p-4 flex items-center justify-center md:hidden"
+        style={{ boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}
+        onClick={() => setCartOpen(true)}
+        aria-label="Open cart"
+      >
+        <span style={{ fontSize: '1.7rem', marginRight: '0.5rem' }}>🛒</span>
+        <span className="font-bold">Cart</span>
+        {cart.length > 0 && (
+          <span className="ml-2 bg-red-600 text-white rounded-full px-2 py-0.5 text-xs font-bold">
+            {cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
+          </span>
+        )}
+      </button>
 
       {/* Footer */}
       <footer id="contact">
